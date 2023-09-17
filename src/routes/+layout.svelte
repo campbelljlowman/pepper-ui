@@ -1,6 +1,10 @@
-<h1>
+<script>
+    import "../app.css";
+</script>
+
+<h1 class="flex items-center justify-between w-full whitespace-nowrap h-20 text-2xl font-bold">
     <a href='/'>Pepper Sports</a>
-    <nav>
+    <nav class="flex justify-center w-full">
         <a href='/NFL'>NFL</a>
         <a href='/CFB'>CFB</a>
         <a href='/NBA'>NBA</a>
@@ -13,23 +17,6 @@
 <slot />
 
 <style>
-    :root{
-        /* font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; */
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-        background-color: var(--background-color);
-    }
-    h1 {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        white-space: nowrap;
-    }
-    nav {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-    } 
     a {
         float: left;
         margin: 0.5rem;
@@ -39,12 +26,7 @@
         border-radius: 12px;
     }
     a:hover {
-
-        background-color: #c2c1c1;
+        background-color: var(--background-hover);
     }
 
-    :global(:root){
-        --text-primary: #7f1717;
-        --background-color: #b1b0b0;
-    }
 </style>
