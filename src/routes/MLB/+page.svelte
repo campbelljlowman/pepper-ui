@@ -2,7 +2,15 @@
     import Game from "$lib/components/Game.svelte";
 
     export let data;
-    console.log(data);
+    data.mlb_games_today.sort((a, b) => {
+        const a_date = new Date(a.timestamptz)
+        const b_date = new Date(b.timestamptz)
+        if (a_date > b_date) {
+            return 1
+        } else {
+            return -1
+        }
+    });
 </script>
 
 <div class="grid grid-cols-3 p-4">
