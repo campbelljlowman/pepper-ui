@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import "../app.css";
 </script>
 
@@ -13,6 +13,10 @@
         <a href='/MLS'>MLS</a>
         <a href='/F1'>F1</a>
     </nav>
+    <div class="m-2 p-1">
+        <button>Sign up</button>
+        <button>Login</button>
+    </div>
 </h1>
 <slot />
 
