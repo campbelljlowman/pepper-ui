@@ -11,6 +11,7 @@
             return -1
         }
     });
+
     let leagueFilter: string = ''
     let divisionFilter: string = ''
     
@@ -57,17 +58,20 @@
     </div>
 </div>
 
-<div class="grid grid-cols-3 p-4">
-    {#each filteredMLBGames as mlb_game}
-        {#if mlb_game.home_team !== null && mlb_game.away_team !== null}
-            <Game 
-                home_team_name={mlb_game.home_team.display_name}
-                home_team_logo={mlb_game.home_team.logo}
-                away_team_name={mlb_game.away_team.display_name}
-                away_team_logo={mlb_game.away_team.logo}
-                timeimestamptz={new Date(mlb_game.timestamptz)}
-                stream_link={mlb_game.stream_link}
-            />
-        {/if}
-    {/each}
+<div class="flex justify-center w-full">
+    <div class="p-4 w-3/4">
+        {#each filteredMLBGames as mlb_game}
+            {#if mlb_game.home_team !== null && mlb_game.away_team !== null}
+                <Game 
+                    home_team_name={mlb_game.home_team.display_name}
+                    home_team_logo={mlb_game.home_team.logo}
+                    away_team_name={mlb_game.away_team.display_name}
+                    away_team_logo={mlb_game.away_team.logo}
+                    timeimestamptz={new Date(mlb_game.timestamptz)}
+                    stream_link={mlb_game.stream_link}
+                    price={4}
+                />
+            {/if}
+        {/each}
+    </div>
 </div>
