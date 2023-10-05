@@ -5,33 +5,30 @@
     data.mlb_games_today.sort((a, b) => {
         const a_date = new Date(a.timestamptz)
         const b_date = new Date(b.timestamptz)
-        if (a_date > b_date) {
-            return 1
-        } else {
-            return -1
-        }
+        return a_date > b_date ? 1 : -1
     });
 
-    let leagueFilter: string = ''
-    let divisionFilter: string = ''
+    let leagueFilter: "American League" | "National League" | undefined = undefined
+    let divisionFilter: "Central" | "East" | "West" | undefined = undefined
     
     $: filteredMLBGames = data.mlb_games_today.filter((mlbGame) => {
-        let leagueMatches: boolean = true;
-        let divisionMatches: boolean = true;
-        if (leagueFilter !== '' && mlbGame.home_team?.league !== leagueFilter && mlbGame.away_team?.league !== leagueFilter){
-            leagueMatches = false;
+        let gameLeagueMatchesFilter: boolean = true;
+        let gameDivisionMatchesFilter: boolean = true;
+        if (leagueFilter !== undefined && mlbGame.home_team?.league !== leagueFilter && mlbGame.away_team?.league !== leagueFilter){
+            gameLeagueMatchesFilter = false;
         }
-        if (divisionFilter !== '' && mlbGame.home_team?.division !== divisionFilter && mlbGame.away_team?.division !== divisionFilter){
-            divisionMatches = false;
+        if (divisionFilter !== undefined && mlbGame.home_team?.division !== divisionFilter && mlbGame.away_team?.division !== divisionFilter){
+            gameDivisionMatchesFilter = false;
         }
 
-        return leagueMatches && divisionMatches;
+        return gameLeagueMatchesFilter && gameDivisionMatchesFilter;
     })
 
-    function updateGameFiter(newLeagueFilter: string, newDivisionFilter: string){
+    function updateGameFilter(newLeagueFilter: "American League" | "National League" | undefined, newDivisionFilter: "Central" | "East" | "West" | undefined){
+        // Clear filters if same one is clicked twice
         if (leagueFilter === newLeagueFilter && divisionFilter === newDivisionFilter) {
-            leagueFilter = ''
-            divisionFilter = ''
+            leagueFilter = undefined
+            divisionFilter = undefined
         } else {
             leagueFilter = newLeagueFilter
             divisionFilter = newDivisionFilter
@@ -41,19 +38,22 @@
 
 <div class="flex justify-around w-full">
     <div class="flex flex-col items-center w-1/3">
-        <button on:click={() => {updateGameFiter('American League', '')}}>American League</button>
+        <button on:click={() => {updateGameFilter('American League', undefined)}}>American League</button>
         <div class="flex gap-4">
-            <button on:click={() => {updateGameFiter('American League', 'West')}}>West</button>
-            <button on:click={() => {updateGameFiter('American League', 'Central')}}>Central</button>
-            <button on:click={() => {updateGameFiter('American League', 'East')}}>East</button>
+            <button on:click={() => {updateGameFilter('American League', 'West')}}>West</button>
+            <button on:click={() => {updateGameFilter('American League', 'Central')}}>Central</button>
+            <button on:click={() => {updateGameFilter('American League', 'East')}}>East</button>
         </div>
     </div>
-    <div class="flex flex-col items-centerw-1/3">
-        <button on:click={() => {updateGameFiter('National League', '')}}>National League</button>
+    <!-- <div>
+        <button>Clear Filters</button>
+    </div> -->
+    <div class="flex flex-col items-center w-1/3">
+        <button on:click={() => {updateGameFilter('National League', undefined)}}>National League</button>
         <div class="flex gap-4">
-            <button on:click={() => {updateGameFiter('National League', 'West')}}>West</button>
-            <button on:click={() => {updateGameFiter('National League', 'Central')}}>Central</button>
-            <button on:click={() => {updateGameFiter('National League', 'East')}}>East</button>
+            <button on:click={() => {updateGameFilter('National League', 'West')}}>West</button>
+            <button on:click={() => {updateGameFilter('National League', 'Central')}}>Central</button>
+            <button on:click={() => {updateGameFilter('National League', 'East')}}>East</button>
         </div>
     </div>
 </div>
