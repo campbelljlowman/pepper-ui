@@ -1,10 +1,11 @@
 <script lang="ts">
-    import Game from "$lib/components/Game.svelte";
     export let data;
+    import Game from "$lib/components/Game.svelte";
 
+    // Sort games by start time
     data.mlb_games_today.sort((a, b) => {
-        const a_date = new Date(a.timestamptz)
-        const b_date = new Date(b.timestamptz)
+        const a_date = new Date(a.start_time)
+        const b_date = new Date(b.start_time)
         return a_date > b_date ? 1 : -1
     });
 
@@ -67,7 +68,7 @@
                     home_team_logo={mlb_game.home_team.logo}
                     away_team_name={mlb_game.away_team.display_name}
                     away_team_logo={mlb_game.away_team.logo}
-                    timeimestamptz={new Date(mlb_game.timestamptz)}
+                    start_time={new Date(mlb_game.start_time)}
                     stream_link={mlb_game.stream_link}
                     price={4}
                 />

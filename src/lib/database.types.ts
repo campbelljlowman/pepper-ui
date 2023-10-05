@@ -40,8 +40,8 @@ export interface Database {
           created_at: string
           home_team: number
           id: number
+          start_time: string
           stream_link: string | null
-          timestamptz: string
           title: string
         }
         Insert: {
@@ -49,8 +49,8 @@ export interface Database {
           created_at?: string
           home_team: number
           id?: number
+          start_time: string
           stream_link?: string | null
-          timestamptz: string
           title: string
         }
         Update: {
@@ -58,8 +58,8 @@ export interface Database {
           created_at?: string
           home_team?: number
           id?: number
+          start_time?: string
           stream_link?: string | null
-          timestamptz?: string
           title?: string
         }
         Relationships: [

@@ -3,7 +3,7 @@
      export let home_team_logo: string;
      export let away_team_name: string;
      export let away_team_logo: string;
-     export let timeimestamptz: Date;
+     export let start_time: Date;
      export let stream_link: string | null;
      export let price: number | null;
 </script>
@@ -27,6 +27,6 @@
         {#if stream_link !== null && stream_link !== ''}
         <a href='/watch/{stream_link}' class="hover:bg-[var(--background-hover)] rounded">Watch</a>
         {/if}
-        <p class="text-sm">{timeimestamptz.toLocaleTimeString([], {hour: 'numeric', minute:'2-digit'})}</p>
+        <p class="text-sm">{start_time.toLocaleTimeString([], {hour: 'numeric', minute:'2-digit'})}</p>
     </div>
 </div>
