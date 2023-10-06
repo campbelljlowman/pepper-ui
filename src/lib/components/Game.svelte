@@ -4,8 +4,8 @@
      export let away_team_name: string;
      export let away_team_logo: string;
      export let start_time: Date;
-     export let stream_link: string | null;
-     export let price: number | null;
+     export let game_stream_id: number | undefined;
+     export let game_stream_price: number | undefined;
 </script>
 
 <div class="flex justify-between items-center border-4 rounded p-4 m-4">
@@ -21,11 +21,11 @@
         </div>
     </div>
     <div class="flex items-center gap-3">
-        {#if price !== null && price != undefined}
-        <p>${price}</p>
+        {#if game_stream_price !== undefined}
+        <p>${game_stream_price}</p>
         {/if}
-        {#if stream_link !== null && stream_link !== ''}
-        <a href='/watch/{stream_link}' class="hover:bg-[var(--background-hover)] rounded">Watch</a>
+        {#if game_stream_id !== undefined}
+        <a href='/watch/{game_stream_id}' class="hover:bg-[var(--background-hover)] rounded">Watch</a>
         {/if}
         <p class="text-sm">{start_time.toLocaleTimeString([], {hour: 'numeric', minute:'2-digit'})}</p>
     </div>

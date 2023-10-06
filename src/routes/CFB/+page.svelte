@@ -6,7 +6,7 @@
 <!-- <h1>CFB</h1> -->
 <div class="grid grid-cols-3 p-4">
     {#each data.games as game}
-        <Game {...game}/>
+        <!-- <Game {...game}/> -->
     {/each}
 </div>
 
