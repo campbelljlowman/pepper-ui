@@ -39,22 +39,22 @@ export interface Database {
           created_at: string
           id: number
           name: string
-          price: number
           stream_link: string
+          view_price: number
         }
         Insert: {
           created_at?: string
           id?: number
           name: string
-          price: number
           stream_link: string
+          view_price: number
         }
         Update: {
           created_at?: string
           id?: number
           name?: string
-          price?: number
           stream_link?: string
+          view_price?: number
         }
         Relationships: []
       }

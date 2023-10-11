@@ -1,5 +1,21 @@
 <script lang="ts">
     import "../app.css";
+    import { invalidate } from '$app/navigation'
+    import { onMount } from 'svelte'
+
+    export let data
+
+    let { supabase, session } = data
+    $: ({ supabase, session } = data)
+
+    onMount(() => {
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((event, _session) => {
+            if (_session?.expires_at !== session?.expires_at) {
+                invalidate('supabase:auth')
+            }
+        })
+        return () => subscription.unsubscribe()
+    });
 </script>
 
 <h1 class="flex items-center justify-between w-full whitespace-nowrap h-20 text-2xl font-bold">
