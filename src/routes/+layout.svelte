@@ -16,6 +16,11 @@
         })
         return () => subscription.unsubscribe()
     });
+
+    const logout = async () => {
+        console.log("logging out of supabase")
+        supabase.auth.signOut()
+    }
 </script>
 
 <h1 class="flex items-center justify-between w-full whitespace-nowrap h-20 text-2xl font-bold">
@@ -34,6 +39,10 @@
             <a href='/auth/sign-up'>Sign up</a>
             <a href='/auth/login'>Login</a>
         </div>
+    {:else}
+        <div class="m-2 p-1">
+            <button on:click={logout}>Logout</button>
+        </div> 
     {/if}
 </h1>
 <slot />
