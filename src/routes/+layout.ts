@@ -10,10 +10,10 @@ export const load = async ({ fetch, data, depends }) => {
     supabaseUrl: PUBLIC_SUPABASE_URL,
     supabaseKey: PUBLIC_SUPABASE_ANON_KEY,
     event: { fetch },
-    serverSession: data.session,
+    serverSession: data.supabaseAuthSession,
   })
 
-  const { data: { session } } = await supabase.auth.getSession()
+  const { data: { session: supabaseAuthSession } } = await supabase.auth.getSession()
 
-  return { supabase, session }
+  return { supabase, supabaseAuthSession }
 }

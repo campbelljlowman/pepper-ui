@@ -10,7 +10,7 @@ declare global {
       getSession(): Promise<Session | null>
     }
     interface PageData {
-      session: Session | null
+		supabaseAuthSession: Session | null
     }
     // interface Error {}
     // interface Platform {}

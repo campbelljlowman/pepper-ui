@@ -5,12 +5,12 @@
 
     export let data
 
-    let { supabase, session } = data
-    $: ({ supabase, session } = data)
+    let { supabase, supabaseAuthSession } = data
+    $: ({ supabase, supabaseAuthSession } = data)
 
     onMount(() => {
         const { data: { subscription } } = supabase.auth.onAuthStateChange((event, _session) => {
-            if (_session?.expires_at !== session?.expires_at) {
+            if (_session?.expires_at !== supabaseAuthSession?.expires_at) {
                 invalidate('supabase:auth')
             }
         })
@@ -29,10 +29,12 @@
         <a href='/MLS'>MLS</a>
         <a href='/F1'>F1</a>
     </nav>
-    <div class="m-2 p-1">
-        <button>Sign up</button>
-        <button>Login</button>
-    </div>
+    {#if !data.supabaseAuthSession}
+        <div class="m-2 p-1">
+            <a href='/auth/sign-up'>Sign up</a>
+            <a href='/auth/login'>Login</a>
+        </div>
+    {/if}
 </h1>
 <slot />
 
