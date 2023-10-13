@@ -140,6 +140,88 @@ export interface Database {
         }
         Relationships: []
       }
+      nhl_game_today: {
+        Row: {
+          away_team: number
+          created_at: string
+          game_stream: number | null
+          home_team: number
+          id: number
+          start_time: string
+          title: string
+        }
+        Insert: {
+          away_team: number
+          created_at?: string
+          game_stream?: number | null
+          home_team: number
+          id?: number
+          start_time: string
+          title: string
+        }
+        Update: {
+          away_team?: number
+          created_at?: string
+          game_stream?: number | null
+          home_team?: number
+          id?: number
+          start_time?: string
+          title?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "nhl_game_today_away_team_fkey"
+            columns: ["away_team"]
+            referencedRelation: "nhl_team"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "nhl_game_today_game_stream_fkey"
+            columns: ["game_stream"]
+            referencedRelation: "game_stream"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "nhl_game_today_home_team_fkey"
+            columns: ["home_team"]
+            referencedRelation: "nhl_team"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      nhl_team: {
+        Row: {
+          abbreviation: string
+          conference: Database["public"]["Enums"]["nhl_conference"]
+          created_at: string
+          display_name: string
+          division: Database["public"]["Enums"]["nhl_division"]
+          id: number
+          logo: string
+          short_display_name: string
+        }
+        Insert: {
+          abbreviation: string
+          conference: Database["public"]["Enums"]["nhl_conference"]
+          created_at?: string
+          display_name: string
+          division: Database["public"]["Enums"]["nhl_division"]
+          id?: number
+          logo: string
+          short_display_name: string
+        }
+        Update: {
+          abbreviation?: string
+          conference?: Database["public"]["Enums"]["nhl_conference"]
+          created_at?: string
+          display_name?: string
+          division?: Database["public"]["Enums"]["nhl_division"]
+          id?: number
+          logo?: string
+          short_display_name?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -150,6 +232,8 @@ export interface Database {
     Enums: {
       mlb_division: "Central" | "East" | "West"
       mlb_league: "American League" | "National League"
+      nhl_conference: "Eastern" | "Western"
+      nhl_division: "Atlantic" | "Metropolitan" | "Central" | "Pacific"
     }
     CompositeTypes: {
       [_ in never]: never
