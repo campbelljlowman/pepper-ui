@@ -73,6 +73,8 @@
                     game_stream_price={mlb_game.game_stream?.view_price}
                 />
             {/if}
+        {:else}
+            <p class="text-center">No MLB games today</p>
         {/each}
     </div>
 </div>

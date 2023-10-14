@@ -61,16 +61,18 @@
     <div class="p-4 w-3/4">
         {#each filteredNHLGames as nhl_game}
             {#if nhl_game.home_team !== null && nhl_game.away_team !== null}
-                <Game 
-                    home_team_name={nhl_game.home_team.display_name}
-                    home_team_logo={nhl_game.home_team.logo}
-                    away_team_name={nhl_game.away_team.display_name}
-                    away_team_logo={nhl_game.away_team.logo}
-                    start_time={new Date(nhl_game.start_time)}
-                    game_stream_id={nhl_game.game_stream?.id}
-                    game_stream_price={nhl_game.game_stream?.view_price}
-                />
+                    <Game 
+                        home_team_name={nhl_game.home_team.display_name}
+                        home_team_logo={nhl_game.home_team.logo}
+                        away_team_name={nhl_game.away_team.display_name}
+                        away_team_logo={nhl_game.away_team.logo}
+                        start_time={new Date(nhl_game.start_time)}
+                        game_stream_id={nhl_game.game_stream?.id}
+                        game_stream_price={nhl_game.game_stream?.view_price}
+                    />
             {/if}
-        {/each}
+        {:else}
+            <p class="text-center">No NHL games today</p>
+        {/each}    
     </div>
 </div>
