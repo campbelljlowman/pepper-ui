@@ -10,7 +10,7 @@
     });
 
     let conferenceFilter: "Eastern" | "Western" | undefined = undefined
-    let divisionFilter: "Central" | "Atlantic" | "Metropolitan" | "Pacific" | undefined
+    let divisionFilter: "Central" | "Atlantic" | "Metropolitan" | "Pacific" | undefined = undefined
     
     $: filteredNHLGames = data.nhl_games_today.filter((nhlGame) => {
         let gameConferenceMatchesFilter: boolean = true;

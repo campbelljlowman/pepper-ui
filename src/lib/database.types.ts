@@ -140,6 +140,88 @@ export interface Database {
         }
         Relationships: []
       }
+      nfl_game_today: {
+        Row: {
+          away_team: number
+          created_at: string
+          game_stream: number | null
+          home_team: number
+          id: number
+          start_time: string
+          title: string
+        }
+        Insert: {
+          away_team: number
+          created_at?: string
+          game_stream?: number | null
+          home_team: number
+          id?: number
+          start_time: string
+          title: string
+        }
+        Update: {
+          away_team?: number
+          created_at?: string
+          game_stream?: number | null
+          home_team?: number
+          id?: number
+          start_time?: string
+          title?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "nfl_game_today_away_team_fkey"
+            columns: ["away_team"]
+            referencedRelation: "nfl_team"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "nfl_game_today_game_stream_fkey"
+            columns: ["game_stream"]
+            referencedRelation: "game_stream"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "nfl_game_today_home_team_fkey"
+            columns: ["home_team"]
+            referencedRelation: "nfl_team"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      nfl_team: {
+        Row: {
+          abbreviation: string
+          conference: Database["public"]["Enums"]["nfl_conference"] | null
+          created_at: string
+          display_name: string
+          division: Database["public"]["Enums"]["nfl_division"]
+          id: number
+          logo: string
+          short_display_name: string
+        }
+        Insert: {
+          abbreviation: string
+          conference?: Database["public"]["Enums"]["nfl_conference"] | null
+          created_at?: string
+          display_name: string
+          division: Database["public"]["Enums"]["nfl_division"]
+          id?: number
+          logo: string
+          short_display_name: string
+        }
+        Update: {
+          abbreviation?: string
+          conference?: Database["public"]["Enums"]["nfl_conference"] | null
+          created_at?: string
+          display_name?: string
+          division?: Database["public"]["Enums"]["nfl_division"]
+          id?: number
+          logo?: string
+          short_display_name?: string
+        }
+        Relationships: []
+      }
       nhl_game_today: {
         Row: {
           away_team: number
@@ -232,6 +314,8 @@ export interface Database {
     Enums: {
       mlb_division: "Central" | "East" | "West"
       mlb_league: "American League" | "National League"
+      nfl_conference: "AFC" | "NFC"
+      nfl_division: "North" | "South" | "East" | "West"
       nhl_conference: "Eastern" | "Western"
       nhl_division: "Atlantic" | "Metropolitan" | "Central" | "Pacific"
     }
