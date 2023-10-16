@@ -12,7 +12,6 @@
     let conferenceFilter: "AFC" | "NFC" | undefined = undefined
     let divisionFilter: "North" | "South" | "East" | "West" | undefined = undefined
     
-    console.log(data.nfl_games_today)
     $: filteredNFLGames = data.nfl_games_today.filter((nflGame) => {
         let gameConferenceMatchesFilter: boolean = true;
         let gameDivisionMatchesFilter: boolean = true;

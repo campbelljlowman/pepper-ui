@@ -13,20 +13,22 @@
     async function loadGameStream() {
         const { data: result, error } = await data.supabase.from('game_stream').select().eq('id', +data.game_stream_id!).limit(1).single()
         if (error) {
-            console.log(`Error getting stream: ${error}`)
+            console.log(`Error getting stream: ${error.message}`)
         }
         game_stream = result
     }
 
     loadGameStream()
 
-    // $: if (data.session) {
+    // $: if (data.supabaseAuthSession) {
     //     loadGameStream()
     // }
 </script>
 
 {#if data.game_stream_id === null}
     <div>Invalid game id</div>
+{:else if game_stream === null}
+    <p>Error getting game stream</p>
 {:else}
     <div>Game: {game_stream?.name}</div>
     <p>${game_stream?.view_price}</p>

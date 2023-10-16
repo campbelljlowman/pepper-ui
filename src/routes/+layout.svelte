@@ -18,7 +18,6 @@
     });
 
     const logout = async () => {
-        console.log("logging out of supabase")
         supabase.auth.signOut()
     }
 </script>
