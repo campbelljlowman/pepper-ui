@@ -1,6 +1,4 @@
-import { supabase } from "$lib/supabaseClient";
-
-export async function load() {
+export async function load({ locals: { supabase } }) {
     const { data, error } = await supabase.from("nfl_game_today").select(`
     title,
     start_time,

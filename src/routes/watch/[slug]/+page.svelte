@@ -17,12 +17,8 @@
         }
         game_stream = result
     }
-
     loadGameStream()
 
-    // $: if (data.supabaseAuthSession) {
-    //     loadGameStream()
-    // }
 </script>
 
 {#if data.game_stream_id === null}
