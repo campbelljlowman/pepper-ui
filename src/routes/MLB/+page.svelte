@@ -69,8 +69,8 @@
                     away_team_name={mlb_game.away_team.display_name}
                     away_team_logo={mlb_game.away_team.logo}
                     start_time={new Date(mlb_game.start_time)}
-                    game_stream_id={mlb_game.game_stream?.id}
-                    game_stream_price={mlb_game.game_stream?.view_price}
+                    watch_page_link='/MLB/watch/{mlb_game.id}'
+                    view_price_dollars={mlb_game.view_price_dollars}
                 />
             {/if}
         {:else}

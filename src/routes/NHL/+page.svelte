@@ -67,8 +67,8 @@
                         away_team_name={nhl_game.away_team.display_name}
                         away_team_logo={nhl_game.away_team.logo}
                         start_time={new Date(nhl_game.start_time)}
-                        game_stream_id={nhl_game.game_stream?.id}
-                        game_stream_price={nhl_game.game_stream?.view_price}
+                        watch_page_link='/NHL/watch/{nhl_game.id}'
+                        view_price_dollars={nhl_game.view_price_dollars}
                     />
             {/if}
         {:else}

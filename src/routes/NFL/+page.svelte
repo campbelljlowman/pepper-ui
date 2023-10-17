@@ -15,6 +15,7 @@
     $: filteredNFLGames = data.nfl_games_today.filter((nflGame) => {
         let gameConferenceMatchesFilter: boolean = true;
         let gameDivisionMatchesFilter: boolean = true;
+
         if (conferenceFilter !== undefined && nflGame.home_team?.conference !== conferenceFilter && nflGame.away_team?.conference !== conferenceFilter){
             gameConferenceMatchesFilter = false;
         }
@@ -71,8 +72,8 @@
                         away_team_name={nfl_game.away_team.display_name}
                         away_team_logo={nfl_game.away_team.logo}
                         start_time={new Date(nfl_game.start_time)}
-                        game_stream_id={nfl_game.game_stream?.id}
-                        game_stream_price={nfl_game.game_stream?.view_price}
+                        watch_page_link='/NFL/watch/{nfl_game.id}'
+                        view_price_dollars={nfl_game.view_price_dollars}
                     />
             {/if}
         {:else}

@@ -30,8 +30,8 @@
         <a href='/NBA'>NBA</a>
         <a href='/NHL'>NHL</a>
         <a href='/MLB'>MLB</a>
-        <a href='/MLS'>MLS</a>
-        <a href='/F1'>F1</a>
+        <!-- <a href='/MLS'>MLS</a>
+        <a href='/F1'>F1</a> -->
     </nav>
     {#if !data.supabaseAuthSession}
         <div class="m-2 p-1">
