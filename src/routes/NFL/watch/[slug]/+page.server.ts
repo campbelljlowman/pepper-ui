@@ -1,8 +1,5 @@
-import type { Load } from "@sveltejs/kit"
-
-export const load: Load = async ({ params, parent }) => {
+export const load = async ({ params, locals: { supabase } }) => {
     const nfl_game_id = params.slug
-    const { supabase } = await parent()
 
     if (nfl_game_id === undefined || isNaN(+nfl_game_id!) ){
         console.log("Invalid game strem ID")
