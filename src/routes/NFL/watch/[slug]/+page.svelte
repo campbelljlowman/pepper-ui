@@ -1,5 +1,5 @@
 <script lang="ts">
-    export let data
+    export let data;
 </script>
 
 {#if data.nfl_game_today === null}
@@ -7,5 +7,10 @@
 {:else}
     <div>Game: {data.nfl_game_today?.title}</div>
     <p>${data.nfl_game_today?.view_price_dollars}</p>
-    <p>{data.nfl_game_today?.stream_link}</p>
+
+    {#if data.nfl_game_today.stream_link === null}
+        <p>You need to purchase this game!</p>
+    {:else}
+        <p>{data.nfl_game_today?.stream_link.title}</p>
+    {/if}
 {/if}
