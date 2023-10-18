@@ -3,7 +3,7 @@
     import Game from "$lib/components/Game.svelte";
 
     // Sort games by start time
-    data.nfl_games_today.sort((a, b) => {
+    data.nflGamesToday.sort((a, b) => {
         const a_date = new Date(a.start_time)
         const b_date = new Date(b.start_time)
         return a_date > b_date ? 1 : -1
@@ -12,7 +12,7 @@
     let conferenceFilter: "AFC" | "NFC" | undefined = undefined
     let divisionFilter: "North" | "South" | "East" | "West" | undefined = undefined
     
-    $: filteredNFLGames = data.nfl_games_today.filter((nflGame) => {
+    $: filteredNFLGames = data.nflGamesToday.filter((nflGame) => {
         let gameConferenceMatchesFilter: boolean = true;
         let gameDivisionMatchesFilter: boolean = true;
 
@@ -64,16 +64,16 @@
 
 <div class="flex justify-center w-full">
     <div class="p-4 w-3/4">
-        {#each filteredNFLGames as nfl_game}
-            {#if nfl_game.home_team !== null && nfl_game.away_team !== null}
+        {#each filteredNFLGames as nflGame}
+            {#if nflGame.home_team !== null && nflGame.away_team !== null}
                     <Game 
-                        home_team_name={nfl_game.home_team.display_name}
-                        home_team_logo={nfl_game.home_team.logo}
-                        away_team_name={nfl_game.away_team.display_name}
-                        away_team_logo={nfl_game.away_team.logo}
-                        start_time={new Date(nfl_game.start_time)}
-                        watch_page_link='/NFL/watch/{nfl_game.id}'
-                        view_price_dollars={nfl_game.view_price_dollars}
+                        homeTeamName={nflGame.home_team.display_name}
+                        homeTeamLogo={nflGame.home_team.logo}
+                        awayTeamName={nflGame.away_team.display_name}
+                        awayTeamLogo={nflGame.away_team.logo}
+                        startTime={new Date(nflGame.start_time)}
+                        watchPageLink='/NFL/watch/{nflGame.id}'
+                        viewPriceDollars={nflGame.view_price_dollars}
                     />
             {/if}
         {:else}

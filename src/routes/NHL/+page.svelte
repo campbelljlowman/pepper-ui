@@ -3,7 +3,7 @@
     import Game from "$lib/components/Game.svelte";
 
     // Sort games by start time
-    data.nhl_games_today.sort((a, b) => {
+    data.nhlGamesToday.sort((a, b) => {
         const a_date = new Date(a.start_time)
         const b_date = new Date(b.start_time)
         return a_date > b_date ? 1 : -1
@@ -12,7 +12,7 @@
     let conferenceFilter: "Eastern" | "Western" | undefined = undefined
     let divisionFilter: "Central" | "Atlantic" | "Metropolitan" | "Pacific" | undefined = undefined
     
-    $: filteredNHLGames = data.nhl_games_today.filter((nhlGame) => {
+    $: filteredNHLGames = data.nhlGamesToday.filter((nhlGame) => {
         let gameConferenceMatchesFilter: boolean = true;
         let gameDivisionMatchesFilter: boolean = true;
         if (conferenceFilter !== undefined && nhlGame.home_team?.conference !== conferenceFilter && nhlGame.away_team?.conference !== conferenceFilter){
@@ -59,16 +59,16 @@
 
 <div class="flex justify-center w-full">
     <div class="p-4 w-3/4">
-        {#each filteredNHLGames as nhl_game}
-            {#if nhl_game.home_team !== null && nhl_game.away_team !== null}
+        {#each filteredNHLGames as nhlGame}
+            {#if nhlGame.home_team !== null && nhlGame.away_team !== null}
                     <Game 
-                        home_team_name={nhl_game.home_team.display_name}
-                        home_team_logo={nhl_game.home_team.logo}
-                        away_team_name={nhl_game.away_team.display_name}
-                        away_team_logo={nhl_game.away_team.logo}
-                        start_time={new Date(nhl_game.start_time)}
-                        watch_page_link='/NHL/watch/{nhl_game.id}'
-                        view_price_dollars={nhl_game.view_price_dollars}
+                        homeTeamName={nhlGame.home_team.display_name}
+                        homeTeamLogo={nhlGame.home_team.logo}
+                        awayTeamName={nhlGame.away_team.display_name}
+                        awayTeamLogo={nhlGame.away_team.logo}
+                        startTime={new Date(nhlGame.start_time)}
+                        watchPageLink='/NHL/watch/{nhlGame.id}'
+                        viewPriceDollars={nhlGame.view_price_dollars}
                     />
             {/if}
         {:else}

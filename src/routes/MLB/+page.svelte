@@ -3,7 +3,7 @@
     import Game from "$lib/components/Game.svelte";
 
     // Sort games by start time
-    data.mlb_games_today.sort((a, b) => {
+    data.mlbGamesToday.sort((a, b) => {
         const a_date = new Date(a.start_time)
         const b_date = new Date(b.start_time)
         return a_date > b_date ? 1 : -1
@@ -12,7 +12,7 @@
     let leagueFilter: "American League" | "National League" | undefined = undefined
     let divisionFilter: "Central" | "East" | "West" | undefined = undefined
     
-    $: filteredMLBGames = data.mlb_games_today.filter((mlbGame) => {
+    $: filteredMLBGames = data.mlbGamesToday.filter((mlbGame) => {
         let gameLeagueMatchesFilter: boolean = true;
         let gameDivisionMatchesFilter: boolean = true;
         if (leagueFilter !== undefined && mlbGame.home_team?.league !== leagueFilter && mlbGame.away_team?.league !== leagueFilter){
@@ -61,16 +61,16 @@
 
 <div class="flex justify-center w-full">
     <div class="p-4 w-3/4">
-        {#each filteredMLBGames as mlb_game}
-            {#if mlb_game.home_team !== null && mlb_game.away_team !== null}
+        {#each filteredMLBGames as mlbGame}
+            {#if mlbGame.home_team !== null && mlbGame.away_team !== null}
                 <Game 
-                    home_team_name={mlb_game.home_team.display_name}
-                    home_team_logo={mlb_game.home_team.logo}
-                    away_team_name={mlb_game.away_team.display_name}
-                    away_team_logo={mlb_game.away_team.logo}
-                    start_time={new Date(mlb_game.start_time)}
-                    watch_page_link='/MLB/watch/{mlb_game.id}'
-                    view_price_dollars={mlb_game.view_price_dollars}
+                    homeTeamName={mlbGame.home_team.display_name}
+                    homeTeamLogo={mlbGame.home_team.logo}
+                    awayTeamName={mlbGame.away_team.display_name}
+                    awayTeamLogo={mlbGame.away_team.logo}
+                    startTime={new Date(mlbGame.start_time)}
+                    watchPageLink='/MLB/watch/{mlbGame.id}'
+                    viewPriceDollars={mlbGame.view_price_dollars}
                 />
             {/if}
         {:else}

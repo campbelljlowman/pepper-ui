@@ -2,15 +2,15 @@
     export let data;
 </script>
 
-{#if data.cfb_game_today === null}
+{#if data.cfbGameToday === null}
     <p>Error getting game stream</p>
 {:else}
-    <div>Game: {data.cfb_game_today?.title}</div>
-    <p>${data.cfb_game_today?.view_price_dollars}</p>
+    <div>Game: {data.cfbGameToday?.title}</div>
+    <p>${data.cfbGameToday?.view_price_dollars}</p>
 
-    {#if data.cfb_game_today.stream_link === null}
+    {#if data.cfbGameToday.stream_link === null}
         <p>You need to purchase this game!</p>
     {:else}
-        <p>{data.cfb_game_today?.stream_link.title}</p>
+        <p>{data.cfbGameToday?.stream_link.title}</p>
     {/if}
 {/if}

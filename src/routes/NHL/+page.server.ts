@@ -13,6 +13,6 @@ export async function load({ locals: { supabase } }) {
     }
 
     return {
-        nhl_games_today: data ?? []
+        nhlGamesToday: data ?? []
     };
   }

@@ -13,6 +13,6 @@ export async function load({ locals: { supabase } }) {
     }
 
     return {
-        cfb_games_today: data ?? []
+        cfbGamesToday: data ?? []
     };
   }

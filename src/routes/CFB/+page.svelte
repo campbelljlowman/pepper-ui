@@ -3,15 +3,15 @@
     import Game from "$lib/components/Game.svelte";
 
     // Sort games by start time
-    data.cfb_games_today.sort((a, b) => {
+    data.cfbGamesToday.sort((a, b) => {
         const a_date = new Date(a.start_time)
         const b_date = new Date(b.start_time)
         return a_date > b_date ? 1 : -1
     });
 
-    let conferenceFilter: "ACC" | "Mid-American" | "American" | "Mountain West" | "Pac-12" | "Big 12" | "SEC" | "Big Ten" | "Sun Belt" | "Conference USA" | "FBS Independents" | undefined
+    let conferenceFilter: "ACC" | "Mid-American" | "American" | "Mountain West" | "Pac-12" | "Big 12" | "SEC" | "Big Ten" | "Sun Belt" | "Conference USA" | "FBS Independents" | undefined = undefined
     
-    $: filteredCFBGames = data.cfb_games_today.filter((cfbGame) => {
+    $: filteredCFBGames = data.cfbGamesToday.filter((cfbGame) => {
         let gameConferenceMatchesFilter: boolean = true;
 
         if (conferenceFilter !== undefined && cfbGame.home_team?.conference !== conferenceFilter && cfbGame.away_team?.conference !== conferenceFilter){
@@ -49,16 +49,16 @@
 
 <div class="flex justify-center w-full">
     <div class="p-4 w-3/4">
-        {#each filteredCFBGames as cfb_game}
-            {#if cfb_game.home_team !== null && cfb_game.away_team !== null}
+        {#each filteredCFBGames as cfbGame}
+            {#if cfbGame.home_team !== null && cfbGame.away_team !== null}
                 <Game 
-                    home_team_name={cfb_game.home_team.display_name}
-                    home_team_logo={cfb_game.home_team.logo}
-                    away_team_name={cfb_game.away_team.display_name}
-                    away_team_logo={cfb_game.away_team.logo}
-                    start_time={new Date(cfb_game.start_time)}
-                    watch_page_link='/CFB/watch/{cfb_game.id}'
-                    view_price_dollars={cfb_game.view_price_dollars}
+                    homeTeamName={cfbGame.home_team.display_name}
+                    homeTeamLogo={cfbGame.home_team.logo}
+                    awayTeamName={cfbGame.away_team.display_name}
+                    awayTeamLogo={cfbGame.away_team.logo}
+                    startTime={new Date(cfbGame.start_time)}
+                    watchPageLink='/CFB/watch/{cfbGame.id}'
+                    viewPriceDollars={cfbGame.view_price_dollars}
                 />
             {/if}
         {:else}
