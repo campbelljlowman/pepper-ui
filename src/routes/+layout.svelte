@@ -2,6 +2,7 @@
     import "../app.css";
     import { invalidate } from '$app/navigation'
     import { onMount } from 'svelte'
+    import { AppShell, AppBar } from '@skeletonlabs/skeleton';
 
     export let data
 
@@ -22,41 +23,39 @@
     }
 </script>
 
-<h1 class="flex items-center justify-between w-full whitespace-nowrap h-20 text-2xl font-bold">
-    <a href='/'>Pepper Sports</a>
-    <nav class="flex justify-center w-full">
-        <a href='/NFL'>NFL</a>
-        <a href='/CFB'>CFB</a>
-        <a href='/NBA'>NBA</a>
-        <a href='/NHL'>NHL</a>
-        <a href='/MLB'>MLB</a>
-        <!-- <a href='/MLS'>MLS</a>
-        <a href='/F1'>F1</a> -->
-    </nav>
-    {#if !data.supabaseAuthSession}
-        <div class="m-2 p-1">
-            <a href='/auth/sign-up'>Sign up</a>
-            <a href='/auth/login'>Login</a>
-        </div>
-    {:else}
-        <div class="m-2 p-1">
-            <button on:click={logout}>Logout</button>
-        </div> 
-    {/if}
-</h1>
-<slot />
+<AppShell>
+	<svelte:fragment slot="header">
+        <AppBar gridColumns='grid-cols-3' slotDefault="place-self-center" slotTrail="place-content-end">
+            <svelte:fragment slot="lead"><a class="h2 text-primary-500 font-semibold" href='/'>Pepper Sports</a></svelte:fragment>
 
-<style>
-    a {
-        float: left;
-        margin: 0.5rem;
-        padding: 0.25rem;
-        text-decoration: none;
-        color: var(--text-primary);
-        border-radius: 12px;
-    }
-    a:hover {
-        background-color: var(--background-hover);
-    }
+            <nav class="btn-group variant-filled">
+                <a href='/NFL'>NFL</a>
+                <a href='/CFB'>CFB</a>
+                <a href='/NBA'>NBA</a>
+                <a href='/NHL'>NHL</a>
+                <a href='/MLB'>MLB</a>
+                <!-- <a href='/MLS'>MLS</a>
+                <a href='/F1'>F1</a> -->
+            </nav>
 
-</style>
+            <svelte:fragment slot="trail">
+                {#if !data.supabaseAuthSession}
+                    <div class="btn-group variant-ringed-primary">
+                        <a href='/auth/sign-up'>Sign up</a>
+                        <a href='/auth/login'>Login</a>
+                    </div>
+                {:else}
+                    <button class="btn variant-ringed" on:click={logout}>Logout</button>
+                {/if}
+            </svelte:fragment>
+        </AppBar>
+    </svelte:fragment>
+	<svelte:fragment slot="sidebarLeft">Sidebar Left</svelte:fragment>
+	<svelte:fragment slot="sidebarRight">Sidebar Right</svelte:fragment>
+	<!-- <svelte:fragment slot="pageHeader"></svelte:fragment>	 -->
+    <!-- Router Slot -->
+	<slot />
+	<!-- ---- / ---- -->
+	<!-- <svelte:fragment slot="pageFooter">Page Footer</svelte:fragment> -->
+	<svelte:fragment slot="footer">Footer</svelte:fragment>
+</AppShell>
