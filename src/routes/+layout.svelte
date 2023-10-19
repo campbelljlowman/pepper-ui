@@ -3,8 +3,12 @@
     import { invalidate } from '$app/navigation'
     import { onMount } from 'svelte'
     import { AppShell, AppBar } from '@skeletonlabs/skeleton';
+    import { LightSwitch } from '@skeletonlabs/skeleton';
+    import { page } from '$app/stores';  
 
     export let data
+
+    const sports = ['NFL', 'CFB', 'NBA', 'NHL', 'MLB'] // MLS, F1?
 
     let { supabase, supabaseAuthSession } = data
     $: ({ supabase, supabaseAuthSession } = data)
@@ -23,39 +27,27 @@
     }
 </script>
 
-<AppShell>
-	<svelte:fragment slot="header">
-        <AppBar gridColumns='grid-cols-3' slotDefault="place-self-center" slotTrail="place-content-end">
-            <svelte:fragment slot="lead"><a class="h2 text-primary-500 font-semibold" href='/'>Pepper Sports</a></svelte:fragment>
+<div class="mt-20"></div>
+<AppBar gridColumns='grid-cols-3' slotDefault="place-self-center" slotTrail="place-content-end" class="fixed w-full top-0 left-0 bg-surface-100-800-token h-20">
+    <svelte:fragment slot="lead"><a class="h2 text-primary-500 font-semibold" href='/'>Pepper Sports</a></svelte:fragment>
 
-            <nav class="btn-group variant-filled">
-                <a href='/NFL'>NFL</a>
-                <a href='/CFB'>CFB</a>
-                <a href='/NBA'>NBA</a>
-                <a href='/NHL'>NHL</a>
-                <a href='/MLB'>MLB</a>
-                <!-- <a href='/MLS'>MLS</a>
-                <a href='/F1'>F1</a> -->
-            </nav>
+    <nav class="flex gap-2">
+        {#each sports as sport}
+            <a href='/{sport}' class="btn variant-filled" class:variant-filled-primary={$page.url.pathname === '/' + sport}>{sport} </a>
+        {/each}
+    </nav>
 
-            <svelte:fragment slot="trail">
-                {#if !data.supabaseAuthSession}
-                    <div class="btn-group variant-ringed-primary">
-                        <a href='/auth/sign-up'>Sign up</a>
-                        <a href='/auth/login'>Login</a>
-                    </div>
-                {:else}
-                    <button class="btn variant-ringed" on:click={logout}>Logout</button>
-                {/if}
-            </svelte:fragment>
-        </AppBar>
+    <svelte:fragment slot="trail">
+        <LightSwitch />
+        {#if !data.supabaseAuthSession}
+            <div class="btn-group variant-ringed-primary">
+                <a href='/auth/sign-up'>Sign up</a>
+                <a href='/auth/login'>Login</a>
+            </div>
+        {:else}
+            <button class="btn variant-ringed" on:click={logout}>Logout</button>
+        {/if}
     </svelte:fragment>
-	<svelte:fragment slot="sidebarLeft">Sidebar Left</svelte:fragment>
-	<svelte:fragment slot="sidebarRight">Sidebar Right</svelte:fragment>
-	<!-- <svelte:fragment slot="pageHeader"></svelte:fragment>	 -->
-    <!-- Router Slot -->
-	<slot />
-	<!-- ---- / ---- -->
-	<!-- <svelte:fragment slot="pageFooter">Page Footer</svelte:fragment> -->
-	<svelte:fragment slot="footer">Footer</svelte:fragment>
-</AppShell>
+</AppBar>
+
+<slot />

@@ -12,5 +12,3 @@
     --background-color: #b1b0b0;
     --background-hover: #c2c1c1
 }
-
-html, body { @apply h-full overflow-hidden; }
