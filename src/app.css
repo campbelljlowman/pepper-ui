@@ -4,11 +4,9 @@
 
 
 :root{
-    /* font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; */
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background-color: var(--background-color);
+    height: 100%;
+}
 
-    --text-primary: #7f1717;
-    --background-color: #b1b0b0;
-    --background-hover: #c2c1c1
+html, body {
+    overflow: overlay;
 }

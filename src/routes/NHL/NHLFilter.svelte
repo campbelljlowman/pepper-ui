@@ -24,6 +24,6 @@
     {#if division}
         {division}
     {:else}
-        {conference}
+        {conference} Conference
     {/if}
 </button>
