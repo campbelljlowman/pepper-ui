@@ -2,7 +2,7 @@
     export let data;
     import Game from "$lib/components/Game.svelte";
     import NhlFilter from "./NHLFilter.svelte";
-    import type { nhlConference, nhlDivision } from "./NHLTypes";
+    import type { nhlConference, nhlDivision } from "./NHLFilter.svelte";
 
     // Sort games by start time
     data.nhlGamesToday.sort((a, b) => {

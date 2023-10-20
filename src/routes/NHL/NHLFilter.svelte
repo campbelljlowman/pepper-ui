@@ -1,6 +1,9 @@
-<script lang="ts">
-    import type { nhlConference, nhlDivision } from "./NHLTypes";
+<script context="module" lang="ts">
+    export type nhlDivision = "Central" | "Atlantic" | "Metropolitan" | "Pacific" | undefined
+    export type nhlConference = "Eastern" | "Western" | undefined
+</script>
 
+<script lang="ts">
     export let conference: nhlConference
     export let division: nhlDivision
     export let conferenceFilter: nhlConference
