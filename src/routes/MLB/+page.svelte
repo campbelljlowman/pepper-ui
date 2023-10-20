@@ -1,6 +1,8 @@
 <script lang="ts">
     export let data;
     import Game from "$lib/components/Game.svelte";
+    import type { mlbLeague, mlbDivision } from "./MLBFilter.svelte";
+    import MlbFilter from "./MLBFilter.svelte";
 
     // Sort games by start time
     data.mlbGamesToday.sort((a, b) => {
@@ -9,8 +11,8 @@
         return a_date > b_date ? 1 : -1
     });
 
-    let leagueFilter: "American League" | "National League" | undefined = undefined
-    let divisionFilter: "Central" | "East" | "West" | undefined = undefined
+    let leagueFilter: mlbLeague = undefined
+    let divisionFilter: mlbDivision = undefined
     
     $: filteredMLBGames = data.mlbGamesToday.filter((mlbGame) => {
         let gameLeagueMatchesFilter: boolean = true;
@@ -24,57 +26,49 @@
 
         return gameLeagueMatchesFilter && gameDivisionMatchesFilter;
     })
-
-    function updateGameFilter(newLeagueFilter: "American League" | "National League" | undefined, newDivisionFilter: "Central" | "East" | "West" | undefined){
-        // Clear filters if same one is clicked twice
-        if (leagueFilter === newLeagueFilter && divisionFilter === newDivisionFilter) {
-            leagueFilter = undefined
-            divisionFilter = undefined
-        } else {
-            leagueFilter = newLeagueFilter
-            divisionFilter = newDivisionFilter
-        }
-    }
 </script>
 
-<div class="flex justify-around w-full">
-    <div class="flex flex-col items-center w-1/3">
-        <button on:click={() => {updateGameFilter('American League', undefined)}}>American League</button>
-        <div class="flex gap-4">
-            <button on:click={() => {updateGameFilter('American League', 'West')}}>West</button>
-            <button on:click={() => {updateGameFilter('American League', 'Central')}}>Central</button>
-            <button on:click={() => {updateGameFilter('American League', 'East')}}>East</button>
-        </div>
-    </div>
-    <!-- <div>
-        <button>Clear Filters</button>
-    </div> -->
-    <div class="flex flex-col items-center w-1/3">
-        <button on:click={() => {updateGameFilter('National League', undefined)}}>National League</button>
-        <div class="flex gap-4">
-            <button on:click={() => {updateGameFilter('National League', 'West')}}>West</button>
-            <button on:click={() => {updateGameFilter('National League', 'Central')}}>Central</button>
-            <button on:click={() => {updateGameFilter('National League', 'East')}}>East</button>
-        </div>
-    </div>
-</div>
 
-<div class="flex justify-center w-full">
-    <div class="p-4 w-3/4">
-        {#each filteredMLBGames as mlbGame}
-            {#if mlbGame.home_team !== null && mlbGame.away_team !== null}
-                <Game 
-                    homeTeamName={mlbGame.home_team.display_name}
-                    homeTeamLogo={mlbGame.home_team.logo}
-                    awayTeamName={mlbGame.away_team.display_name}
-                    awayTeamLogo={mlbGame.away_team.logo}
-                    startTime={new Date(mlbGame.start_time)}
-                    watchPageLink='/MLB/watch/{mlbGame.id}'
-                    viewPriceDollars={mlbGame.view_price_dollars}
-                />
-            {/if}
-        {:else}
-            <p class="text-center">No MLB games found</p>
-        {/each}
+<div class="grid grid-cols-[1fr,3fr,1fr]">
+    <div></div>
+    <div class="flex justify-center w-full">
+        <div class="p-4 w-full">
+            {#each filteredMLBGames as mlbGame}
+                {#if mlbGame.home_team !== null && mlbGame.away_team !== null}
+                    <Game 
+                        homeTeamName={mlbGame.home_team.display_name}
+                        homeTeamLogo={mlbGame.home_team.logo}
+                        awayTeamName={mlbGame.away_team.display_name}
+                        awayTeamLogo={mlbGame.away_team.logo}
+                        startTime={new Date(mlbGame.start_time)}
+                        watchPageLink='/MLB/watch/{mlbGame.id}'
+                        viewPriceDollars={mlbGame.view_price_dollars}
+                    />
+                {/if}
+            {:else}
+                <p class="text-center">No MLB games found</p>
+            {/each}  
+        </div>
+    </div>
+
+    <div class="flex flex-col justify-around items-center mt-4 fixed right-0 w-1/5 gap-6">
+        <div class="flex items-center justify-around w-5/6">
+            <p>Team Filters</p>
+            <button class="btn btn-sm variant-filled-tertiary" on:click={() => {leagueFilter = undefined, divisionFilter = undefined}}>Clear Filter</button>
+        </div>
+        
+        <div class="flex flex-col justify-center w-2/3 card variant-filled-surface p-4 gap-2">
+            <MlbFilter league="American League" division={undefined} bind:leagueFilter bind:divisionFilter/>
+            <MlbFilter league="American League" division="East" bind:leagueFilter bind:divisionFilter/>
+            <MlbFilter league="American League" division="Central" bind:leagueFilter bind:divisionFilter/>
+            <MlbFilter league="American League" division="West" bind:leagueFilter bind:divisionFilter/>
+        </div>
+
+        <div class="flex flex-col justify-center w-2/3 card variant-filled-surface p-4 gap-2">
+            <MlbFilter league="National League" division={undefined} bind:leagueFilter bind:divisionFilter/>
+            <MlbFilter league="National League" division="East" bind:leagueFilter bind:divisionFilter/>
+            <MlbFilter league="National League" division="Central" bind:leagueFilter bind:divisionFilter/>
+            <MlbFilter league="National League" division="West" bind:leagueFilter bind:divisionFilter/>
+        </div>
     </div>
 </div>

@@ -27,17 +27,6 @@
 
         return gameConferenceMatchesFilter && gameDivisionMatchesFilter;
     })
-
-    function updateGameFilter(newconferenceFilter: nflConference, newDivisionFilter: nflDivision){
-        // Clear filters if same one is clicked twice
-        if (conferenceFilter === newconferenceFilter && divisionFilter === newDivisionFilter) {
-            conferenceFilter = undefined
-            divisionFilter = undefined
-        } else {
-            conferenceFilter = newconferenceFilter
-            divisionFilter = newDivisionFilter
-        }
-    }
 </script>
 
 <div class="grid grid-cols-[1fr,3fr,1fr]">
