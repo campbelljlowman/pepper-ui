@@ -57,21 +57,16 @@
             <button class="btn btn-sm variant-filled-tertiary" on:click={() => {conferenceFilter = undefined, divisionFilter = undefined}}>Clear Filter</button>
         </div>
         
-        <div class="flex flex-col items-center card variant-filled-surface p-4 w-5/6 gap-2">
+        <div class="flex flex-col justify-center w-2/3 card variant-filled-surface p-4 gap-2">
             <NhlFilter conference="Western" division={undefined}  bind:conferenceFilter bind:divisionFilter />
-            <div class="flex justify-center gap-2 flex-wrap">
-                <NhlFilter conference="Western" division="Pacific"  bind:conferenceFilter bind:divisionFilter />
-                <NhlFilter conference="Western" division="Central" bind:conferenceFilter bind:divisionFilter />
-
-            </div>
+            <NhlFilter conference="Western" division="Pacific"  bind:conferenceFilter bind:divisionFilter />
+            <NhlFilter conference="Western" division="Central" bind:conferenceFilter bind:divisionFilter />
         </div>
 
-        <div class="flex flex-col items-center card variant-filled-surface p-4 w-5/6 gap-2">
+        <div class="flex flex-col justify-center w-2/3 card variant-filled-surface p-4 gap-2">
             <NhlFilter conference="Eastern" division={undefined}  bind:conferenceFilter bind:divisionFilter />
-            <div class="flex justify-center gap-2 flex-wrap">
-                <NhlFilter conference="Eastern" division="Atlantic"  bind:conferenceFilter bind:divisionFilter />
-                <NhlFilter conference="Eastern" division="Metropolitan"  bind:conferenceFilter bind:divisionFilter />
-            </div>
+            <NhlFilter conference="Eastern" division="Atlantic"  bind:conferenceFilter bind:divisionFilter />
+            <NhlFilter conference="Eastern" division="Metropolitan"  bind:conferenceFilter bind:divisionFilter />
         </div>
     </div>
 </div>

@@ -1,15 +1,15 @@
 <script context="module" lang="ts">
-    export type nhlConference = "Eastern" | "Western" | undefined
-    export type nhlDivision = "Central" | "Atlantic" | "Metropolitan" | "Pacific" | undefined
+    export type nbaConference = "Eastern" | "Western" | undefined
+    export type nbaDivision = "Central" | "Atlantic" | "Southeast" | "Northwest" | "Pacific" | "Southwest" | undefined
 </script>
 
 <script lang="ts">
-    export let conference: nhlConference
-    export let division: nhlDivision
-    export let conferenceFilter: nhlConference
-    export let divisionFilter: nhlDivision
+    export let conference: nbaConference
+    export let division: nbaDivision
+    export let conferenceFilter: nbaConference
+    export let divisionFilter: nbaDivision
 
-    function updateGameFilter(newconferenceFilter: nhlConference, newDivisionFilter: nhlDivision){
+    function updateGameFilter(newconferenceFilter: nbaConference, newDivisionFilter: nbaDivision){
         // Clear filters if same one is clicked twice
         if (conferenceFilter === newconferenceFilter && divisionFilter === newDivisionFilter) {
             conferenceFilter = undefined

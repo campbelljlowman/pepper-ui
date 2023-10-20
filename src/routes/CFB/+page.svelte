@@ -27,7 +27,7 @@
 <div class="grid grid-cols-[1fr,3fr,1fr]">
     <div></div>
     <div class="flex justify-center w-full">
-        <div class="p-4 w-3/4">
+        <div class="p-4 w-full">
             {#each filteredCFBGames as cfbGame}
                 {#if cfbGame.home_team !== null && cfbGame.away_team !== null}
                     <Game 
@@ -41,7 +41,7 @@
                     />
                 {/if}
             {:else}
-                <p class="text-center">No CFB games today</p>
+                <p class="text-center">No CFB games found</p>
             {/each}
         </div>
     </div>
@@ -52,20 +52,18 @@
             <button class="btn btn-sm variant-filled-tertiary" on:click={() => {conferenceFilter = undefined}}>Clear Filter</button>
         </div>
         
-        <div class="flex flex-col card variant-filled-surface p-4 justify-center gap-2">
-            <!-- <div class="flex justify-center w-3/4 gap-4"> -->
-                <CfbFilter conference='ACC' bind:conferenceFilter />
-                <CfbFilter conference='Mid-American' bind:conferenceFilter />
-                <CfbFilter conference='American' bind:conferenceFilter />
-                <CfbFilter conference='Mountain West' bind:conferenceFilter />
-                <CfbFilter conference='Pac-12' bind:conferenceFilter />
-                <CfbFilter conference='Big 12' bind:conferenceFilter />
-                <CfbFilter conference='SEC' bind:conferenceFilter />
-                <CfbFilter conference='Big Ten' bind:conferenceFilter />
-                <CfbFilter conference='Sun Belt' bind:conferenceFilter />
-                <CfbFilter conference='Conference USA' bind:conferenceFilter />
-                <CfbFilter conference='FBS Independents' bind:conferenceFilter />
-            <!-- </div> -->
+        <div class="flex flex-col justify-center w-2/3 card variant-filled-surface p-4 gap-2">
+            <CfbFilter conference='ACC' bind:conferenceFilter />
+            <CfbFilter conference='Mid-American' bind:conferenceFilter />
+            <CfbFilter conference='American' bind:conferenceFilter />
+            <CfbFilter conference='Mountain West' bind:conferenceFilter />
+            <CfbFilter conference='Pac-12' bind:conferenceFilter />
+            <CfbFilter conference='Big 12' bind:conferenceFilter />
+            <CfbFilter conference='SEC' bind:conferenceFilter />
+            <CfbFilter conference='Big Ten' bind:conferenceFilter />
+            <CfbFilter conference='Sun Belt' bind:conferenceFilter />
+            <CfbFilter conference='Conference USA' bind:conferenceFilter />
+            <CfbFilter conference='FBS Independents' bind:conferenceFilter />
         </div>
     </div>
 </div>

@@ -74,7 +74,7 @@
                 />
             {/if}
         {:else}
-            <p class="text-center">No MLB games today</p>
+            <p class="text-center">No MLB games found</p>
         {/each}
     </div>
 </div>
