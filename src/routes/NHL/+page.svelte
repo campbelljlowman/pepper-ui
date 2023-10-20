@@ -56,17 +56,17 @@
             <p>Team Filters</p>
             <button class="btn btn-sm variant-filled-tertiary" on:click={() => {conferenceFilter = undefined, divisionFilter = undefined}}>Clear Filter</button>
         </div>
-        
-        <div class="flex flex-col justify-center w-2/3 card variant-filled-surface p-4 gap-2">
-            <NhlFilter conference="Western" division={undefined}  bind:conferenceFilter bind:divisionFilter />
-            <NhlFilter conference="Western" division="Pacific"  bind:conferenceFilter bind:divisionFilter />
-            <NhlFilter conference="Western" division="Central" bind:conferenceFilter bind:divisionFilter />
-        </div>
 
         <div class="flex flex-col justify-center w-2/3 card variant-filled-surface p-4 gap-2">
             <NhlFilter conference="Eastern" division={undefined}  bind:conferenceFilter bind:divisionFilter />
             <NhlFilter conference="Eastern" division="Atlantic"  bind:conferenceFilter bind:divisionFilter />
             <NhlFilter conference="Eastern" division="Metropolitan"  bind:conferenceFilter bind:divisionFilter />
+        </div>
+        
+        <div class="flex flex-col justify-center w-2/3 card variant-filled-surface p-4 gap-2">
+            <NhlFilter conference="Western" division={undefined}  bind:conferenceFilter bind:divisionFilter />
+            <NhlFilter conference="Western" division="Pacific"  bind:conferenceFilter bind:divisionFilter />
+            <NhlFilter conference="Western" division="Central" bind:conferenceFilter bind:divisionFilter />
         </div>
     </div>
 </div>

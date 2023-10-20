@@ -58,17 +58,18 @@
         </div>
         
         <div class="flex flex-col justify-center w-2/3 card variant-filled-surface p-4 gap-2">
+            <NbaFilter conference="Eastern" division={undefined} bind:conferenceFilter bind:divisionFilter/>
+            <NbaFilter conference="Eastern" division="Atlantic" bind:conferenceFilter bind:divisionFilter/>
+            <NbaFilter conference="Eastern" division="Central" bind:conferenceFilter bind:divisionFilter/>
+            <NbaFilter conference="Eastern" division="Southeast" bind:conferenceFilter bind:divisionFilter/>
+        </div>
+        
+        <div class="flex flex-col justify-center w-2/3 card variant-filled-surface p-4 gap-2">
             <NbaFilter conference="Western" division={undefined} bind:conferenceFilter bind:divisionFilter/>
             <NbaFilter conference="Western" division="Northwest" bind:conferenceFilter bind:divisionFilter/>
             <NbaFilter conference="Western" division="Pacific" bind:conferenceFilter bind:divisionFilter/>
             <NbaFilter conference="Western" division="Southwest" bind:conferenceFilter bind:divisionFilter/>
         </div>
 
-        <div class="flex flex-col justify-center w-2/3 card variant-filled-surface p-4 gap-2">
-            <NbaFilter conference="Eastern" division={undefined} bind:conferenceFilter bind:divisionFilter/>
-            <NbaFilter conference="Eastern" division="Atlantic" bind:conferenceFilter bind:divisionFilter/>
-            <NbaFilter conference="Eastern" division="Central" bind:conferenceFilter bind:divisionFilter/>
-            <NbaFilter conference="Eastern" division="Southeast" bind:conferenceFilter bind:divisionFilter/>
-        </div>
     </div>
 </div>
